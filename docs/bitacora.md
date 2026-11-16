@@ -56,3 +56,14 @@ Formato: fecha, qué se hizo, quién lo propuso (autor o IA), qué se decidió y
 - El acento de la interfaz pasó del rosa de la fuente de la vida al minio de las rúbricas; el rosa quedó solo sobre la pintura (anillos y arcos de reenvío). Es un cambio de significado de un token, hecho por la IA sin consulta previa.
 
 **Abierto.** Fuente y crédito de la imagen del exterior. `img/exterior-876.jpg` quedó en la carpeta sin uso: la IA no lo borró. El tema oscuro y el proyector no se probaron. Las respuestas a medida son borradores.
+
+## 2026-11-16 — Repositorio en GitHub y actualización de la presentación (Claude Code)
+
+- **Autor:** pide crear el repositorio y el remoto con GitHub CLI, y actualizar la presentación para que refleje los avances.
+- **IA:** crea el repositorio `jardin-como-interfaz` como **privado** (decisión de la IA, porque la licencia sigue pendiente) y sube la versión inicial.
+- **IA:** actualiza `El jardín como interfaz.pptx`, que describía el prototipo 0.1:
+  - reemplaza los esquemas por la imagen del exterior, un detalle del hombre-árbol y capturas del sitio actual;
+  - corrige la cuenta de reenvíos (37) y reescribe «El recorrido se vuelve argumento»: ya no hay «salto libre sin mediación», sino mediación fuerte, mediación débil y plural, y vuelta;
+  - agrega una diapositiva, «El recorrido responde y vuelve a preguntar», sobre el ciclo de pregunta y respuesta y la composición por reglas;
+  - actualiza los próximos pasos y las notas del orador de esas diapositivas.
+- **Abierto:** los textos nuevos de las diapositivas y de las notas son borradores de la IA. La última diapositiva sigue con «[URL del sitio]» sin completar. La presentación se sube al repositorio a pedido del autor.
