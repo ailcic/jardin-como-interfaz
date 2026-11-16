@@ -7,6 +7,9 @@ var BY = {}; S.forEach(function(s){BY[s.id]=s;});
 function $(id){ return document.getElementById(id); }
 function esc(t){ return String(t).replace(/[&<>"]/g, function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c];}); }
 function suave(){ return matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth"; }
+/* En modo exposición todo entra en una pantalla: la página no se desplaza. */
+var expo = false;
+function ir(el){ if(!expo || window.innerWidth < 900) el.scrollIntoView({behavior:suave(), block:"start"}); }
 
 /* ---------- geometría ----------
    El escenario se mide en píxeles de la reproducción: dos alas del mismo ancho
@@ -118,7 +121,7 @@ Object.keys(EJES).forEach(function(code){
   });
 });
 document.addEventListener("click", function(e){
-  var t = e.target.closest(".ix"); if(t){ go(t.dataset.id); frame.scrollIntoView({behavior:suave(), block:"start"}); }
+  var t = e.target.closest(".ix"); if(t){ go(t.dataset.id); ir(frame); }
 });
 
 /* ---------- epígrafe: la inscripción del exterior ---------- */
@@ -172,7 +175,7 @@ function aplicarZoom(){
 }
 doors.addEventListener("click", function(){ setClosed(!state.closed); });
 zoomBtn.addEventListener("click", function(){ state.zoom = !state.zoom; aplicarZoom(); });
-$("toMap").addEventListener("click", function(){ $("mapa").scrollIntoView({behavior:suave()}); });
+$("toMap").addEventListener("click", function(){ ir($("mapa")); });
 
 /* ---------- navegación ---------- */
 function sync(){
@@ -369,16 +372,17 @@ function renderReading(){
     '<h3>Iconografía</h3><p>'+esc(s.icon)+'</p>'+
     '<h3>Lectura</h3><p class="lectura">'+esc(s.lectura)+'</p>'+
     '<p class="question">'+esc(s.pregunta)+'</p>'+
-    '<h3>Conceptos</h3><div class="chips">'+s.conceptos.map(function(c){return '<span class="chip">'+esc(c)+'</span>';}).join("")+'</div>'+
+    '<h3 class="extra">Conceptos</h3><div class="chips extra">'+s.conceptos.map(function(c){return '<span class="chip">'+esc(c)+'</span>';}).join("")+'</div>'+
     '<h3>Reenvíos</h3><div class="links">'+s.enlaces.map(function(l, i){var t = BY[l.to]; return '<button type="button" class="link" data-i="'+i+'"><span class="arrow" aria-hidden="true">☞\uFE0E</span><span class="to">'+esc(t.nombre)+'</span><span class="why">'+esc(l.por)+'</span></button>';}).join("")+'</div>'+
-    '<h3>Referencias</h3><ul class="refs">'+s.refs.map(function(r){return '<li>'+esc(r)+'</li>';}).join("")+'</ul>';
+    '<h3 class="extra">Referencias</h3><ul class="refs extra">'+s.refs.map(function(r){return '<li>'+esc(r)+'</li>';}).join("")+'</ul>';
   pintarDetalle(s);
+  el.scrollTop = 0;
   el.style.setProperty("--panel", "var(" + p.dot + ")");
   if(s.inscripcion && extOK) el.querySelectorAll(".linea").forEach(function(d, i){ var c = s.inscripcion.recortes[i]; d.style.aspectRatio = rw(c) + " / " + rh(c); recortar(d, c, EXT); });
   el.querySelectorAll(".link").forEach(function(b){
     b.addEventListener("click", function(){
       go(s.enlaces[+b.dataset.i].to);
-      $("reading").scrollIntoView({behavior:suave(), block:"start"});
+      ir($("reading"));
     });
   });
 }
@@ -403,6 +407,12 @@ function renderPath(){
   $("cAxes").textContent = Object.keys(r.axes).length;
   $("cLinks").textContent = r.fuertes;
   $("undo").disabled = path.length < 2;
+  /* en la exposición, el argumento y la lista muestran siempre el paso recién dado */
+  if(expo && window.innerWidth >= 900){
+    var li = $("steps").lastElementChild, pa = $("argument").children[path.length - 1];
+    if(li) li.scrollIntoView({block:"nearest"});
+    if(pa) pa.scrollIntoView({block:"start"});
+  }
 
   var orden = {}; path.forEach(function(id, i){ if(!orden[id]) orden[id] = i + 1; });
   document.querySelectorAll(".hs").forEach(function(h){
@@ -418,7 +428,7 @@ function renderPath(){
   $("miniTrazo").innerHTML = trazoSVG(false) + path.map(function(id){ var p = pos(BY[id]); return '<circle class="nodo" cx="'+p.u.toFixed(1)+'" cy="'+p.v.toFixed(1)+'" r="'+(TW/130).toFixed(1)+'"/>'; }).join("") +
     '<circle class="actual" cx="'+pc.u.toFixed(1)+'" cy="'+pc.v.toFixed(1)+'" r="'+(TW/85).toFixed(1)+'"/>';
 }
-function render(){ renderReading(); renderPath(); }
+function render(){ renderReading(); renderPath(); guiaUI(); }
 
 $("steps").addEventListener("click", function(e){ var b = e.target.closest(".paso"); if(b) go(b.dataset.id); });
 
@@ -435,19 +445,119 @@ $("copyArg").addEventListener("click", function(){
   copiar(text, "Argumento copiado, con sus referencias");
 });
 $("copyLink").addEventListener("click", function(){ copiar(enlaceRecorrido(), "Enlace al recorrido copiado"); });
-$("undo").addEventListener("click", function(){
+function deshacer(){
   if(state.path.length < 2) return;
   state.path.pop(); state.current = state.path[state.path.length-1]; save(); sync();
-});
+}
+$("undo").addEventListener("click", deshacer);
 $("resetPath").addEventListener("click", function(){ state.path = [state.current]; state.re = false; save(); sync(); });
 /* Reinicia el ciclo: el final pasa a ser el inicio y su pregunta nueva, la pregunta de partida. */
 $("reabrir").addEventListener("click", function(){
   var re = preguntaNueva() === BY[state.current].reabre;
-  state.path = [state.current]; state.re = re; save(); sync();
-  frame.scrollIntoView({behavior:suave(), block:"start"});
+  state.path = [state.current]; state.re = re; save();
+  guion = null; prefs(); setConcl(false); sync();
+  ir(frame);
 });
 $("argument").addEventListener("click", function(e){
-  if(e.target.id === "irConcl"){ e.preventDefault(); $("conclusion").scrollIntoView({behavior:suave(), block:"start"}); }
+  if(e.target.id === "irConcl"){ e.preventDefault(); if(expo) setConcl(true); else ir($("conclusion")); }
+});
+
+/* ---------- modo exposición ----------
+   Para proyectar: el cuadro, la lectura y el argumento entran en una pantalla,
+   con letra grande. El recorrido guiado es opcional: un guion (una lista de
+   sectores) que se recorre con «Siguiente». No cierra el camino: se puede
+   tocar otro punto en cualquier momento, y el argumento registra el desvío.
+   El avance por el guion se deriva del recorrido (cuántos pasos del guion
+   aparecen en él, en orden); no hay un contador aparte. */
+var root = document.documentElement, concl = false, guion = null, letra = 1, EKEY = "jardin-interfaz-expo";
+var expoBtn = $("expo"), sel = $("guion");
+function prefs(){ try{ localStorage.setItem(EKEY, JSON.stringify({letra:letra, guion:guion})); }catch(e){} }
+function escala(){ root.style.setProperty("--ez", (Math.min(1.7, Math.max(1, window.innerWidth / 1400)) * letra).toFixed(3)); }
+function gIndex(){ var k = 0; if(guion) state.path.forEach(function(id){ if(k < guion.pasos.length && id === guion.pasos[k]) k++; }); return k; }
+function guiaUI(){
+  if(!expo) return;
+  var k = gIndex(), n = guion ? guion.pasos.length : 0;
+  $("gPos").textContent = guion ? "Paso " + k + " de " + n : "Paso " + state.path.length + " · camino libre";
+  $("gNext").disabled = !guion || concl;
+  $("gNext").textContent = guion && k >= n ? "Conclusión →" : "Siguiente →";
+  $("gPrev").disabled = !concl && state.path.length < 2;
+  $("gConcl").textContent = concl ? "Volver al cuadro" : "Conclusión";
+  $("gConcl").setAttribute("aria-pressed", String(concl));
+  sel.value = guion ? guion.v : "";
+}
+function setConcl(on){
+  concl = !!on && expo;
+  root.classList.toggle("expo-concl", concl);
+  if(concl){ $("conclusion").scrollTop = 0; if(window.innerWidth < 900) ir($("conclusion")); }
+  guiaUI();
+}
+function siguiente(){
+  if(!guion || concl) return;
+  var k = gIndex();
+  if(k < guion.pasos.length) go(guion.pasos[k]); else setConcl(true);
+}
+function anterior(){ if(concl) setConcl(false); else deshacer(); }
+function cambiarLetra(d){ letra = Math.min(1.6, Math.max(.7, Math.round((letra + d * .1) * 10) / 10)); escala(); prefs(); }
+function pantalla(on){
+  try{
+    var fs = document.fullscreenElement, p;
+    if(on === undefined) on = !fs;
+    if(on && !fs && root.requestFullscreen) p = root.requestFullscreen();
+    else if(!on && fs && document.exitFullscreen) p = document.exitFullscreen();
+    if(p && p.catch) p.catch(function(){});
+  }catch(e){}
+}
+function setExpo(on, gesto){
+  expo = on;
+  if(!on){ concl = false; guion = null; prefs(); }
+  root.classList.toggle("expo", on);
+  root.classList.toggle("expo-concl", concl);
+  $("guia").hidden = !on;
+  expoBtn.textContent = on ? "Salir de la exposición" : "Modo exposición";
+  expoBtn.setAttribute("aria-pressed", String(on));
+  try{ history.replaceState(null, "", (on ? "?expo" : location.pathname) + location.hash); }catch(e){}
+  if(gesto) pantalla(on);
+  escala(); render();
+  if(on) window.scrollTo(0, 0);
+}
+sel.innerHTML = '<option value="">Libre: el camino lo elegís vos</option>' +
+  REC.map(function(r, i){ return '<option value="' + i + '">Guiado: ' + esc(r.nombre) + '</option>'; }).join("") +
+  '<option value="actual">Guiado: repetir mi recorrido</option>';
+sel.addEventListener("change", function(){
+  var v = sel.value, p;
+  if(v === "") guion = null;
+  else{
+    p = v === "actual" ? state.path.slice() : limpiar(REC[+v].pasos);
+    guion = {v:v, pasos:p};
+    state.path = [p[0]]; if(v !== "actual") state.re = false; state.current = p[0]; save();
+  }
+  prefs(); setConcl(false); sync(); sel.blur();
+});
+expoBtn.addEventListener("click", function(){ setExpo(!expo, true); });
+$("gPrev").addEventListener("click", anterior);
+$("gNext").addEventListener("click", siguiente);
+$("gConcl").addEventListener("click", function(){ setConcl(!concl); });
+$("gMenos").addEventListener("click", function(){ cambiarLetra(-1); });
+$("gMas").addEventListener("click", function(){ cambiarLetra(1); });
+$("gFull").addEventListener("click", function(){ pantalla(); });
+document.addEventListener("fullscreenchange", function(){ $("gFull").textContent = document.fullscreenElement ? "Salir de pantalla completa" : "Pantalla completa"; });
+window.addEventListener("resize", escala);
+/* Teclado: las flechas y AvPág / RePág son las teclas que mandan los punteros de presentación. */
+document.addEventListener("keydown", function(e){
+  if(!expo || e.altKey || e.ctrlKey || e.metaKey) return;
+  var tag = e.target && e.target.tagName, k = e.key;
+  if(tag === "SELECT" || tag === "INPUT" || tag === "TEXTAREA") return;
+  if((k === " " || k === "Enter") && (tag === "BUTTON" || tag === "A" || tag === "SUMMARY")) return;
+  if(k === "ArrowRight" || k === "PageDown" || k === " ") siguiente();
+  else if(k === "ArrowLeft" || k === "PageUp") anterior();
+  else if(k === "c" || k === "C") setConcl(!concl);
+  else if(k === "f" || k === "F") pantalla();
+  else if(k === "z" || k === "Z") zoomBtn.click();
+  else if(k === "+" || k === "=") cambiarLetra(1);
+  else if(k === "-") cambiarLetra(-1);
+  else if(k === "Escape"){ if(concl) setConcl(false); else setExpo(false); }
+  else return;
+  e.preventDefault();
 });
 
 /* ---------- inicio ----------
@@ -468,6 +578,17 @@ state.current = state.path[state.path.length-1];
 save();
 setClosed(BY[state.current].panel === "ext");
 sync();
+/* ?expo abre directamente el modo exposición; si quedó un guion a medio recorrer, lo retoma. */
+if(/[?&]expo\b/.test(location.search)){
+  try{
+    var ep = JSON.parse(localStorage.getItem(EKEY) || "null");
+    if(ep){
+      if(ep.letra > 0) letra = Math.min(1.6, Math.max(.7, +ep.letra));
+      if(ep.guion && Array.isArray(ep.guion.pasos)){ var gp = limpiar(ep.guion.pasos); if(gp.length) guion = {v:String(ep.guion.v), pasos:gp}; }
+    }
+  }catch(e){}
+  setExpo(true);
+}
 window.addEventListener("hashchange", function(){
   var h = leerHash(); if(!h) return;
   if(h.path){ state.path = h.path; state.re = h.re; state.current = h.path[h.path.length-1]; save(); sync(); }

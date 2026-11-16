@@ -14,6 +14,8 @@ python3 -m http.server 8001
 
 No hay dependencias ni paso de compilación. Todo el contenido está en `js/datos.js`.
 
+Para proyectar, el botón «Modo exposición» (o `?expo` en la dirección) pone el cuadro, la lectura y el argumento en una sola pantalla, con letra grande y un recorrido guiado opcional. Teclas: → siguiente, ← anterior, C conclusión, Z acercar, F pantalla completa, + y − tamaño de letra, Esc salir.
+
 ## Documentación
 
 - `docs/abstract.md`: abstract de la ponencia.

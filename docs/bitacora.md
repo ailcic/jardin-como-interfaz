@@ -75,3 +75,16 @@ Formato: fecha, qué se hizo, quién lo propuso (autor o IA), qué se decidió y
 - **Autor:** fija la licencia, por ahora, en CC BY-NC-ND.
 - **IA:** agrega `LICENSE` con el texto legal de la versión 4.0 (la versión la eligió la IA, por ser la vigente), lo anota en `README.md` y `CLAUDE.md`, aclara que las reproducciones de `img/` no quedan cubiertas, y pone la dirección del sitio en la última diapositiva y en los próximos pasos de la presentación.
 - **Abierto:** falta el crédito de la imagen del exterior. La licencia elegida no permite obras derivadas, lo que entra en tensión con la idea de que estudiantes sumen sectores al sitio; queda para discutir.
+
+## 2026-11-16 — Modo exposición (Claude Code)
+
+- **Autor:** pide armar el modo exposición para la ponencia. La especificación era la de los pendientes: pantalla completa, letra grande, recorrido guiado opcional.
+- **IA:** lo implementa como la misma página reordenada, no como una vista aparte, para que lo que se proyecta sea el mismo mecanismo que usa cualquier lector. Decisiones de la IA, a revisar por el autor:
+  - una sola pantalla sin desplazamiento: cuadro, pregunta de partida, pasos y argumento a la izquierda; lectura a la derecha. Se ocultan índice, mapa de ejes, notas, conceptos y referencias, y también el epígrafe en latín de la cabecera;
+  - el recorrido guiado es un guion que se sigue con «Siguiente», pero **no cierra el camino**: si se toca otro punto, el desvío entra en el argumento como mediación débil y el guion sigue después. El avance se deriva del recorrido, sin contador aparte;
+  - «Anterior» deshace el último paso (lo quita del recorrido), no navega hacia atrás sumando pasos;
+  - al terminar el guion, «Siguiente» abre la conclusión, a pantalla completa y en dos columnas;
+  - teclado pensado para un puntero de presentación (flechas, AvPág y RePág), más C, Z, F, + y −;
+  - la letra se agranda con `zoom` según el ancho de la ventana, con ajuste manual;
+  - agrega una nota «Exposición» en las notas del prototipo.
+- **Abierto:** no se probó en el proyector ni con un puntero, ni con interacción manual; se verificó con capturas automáticas (1920×1080, 1366×768, 1024×768) y simulando teclas. La pantalla completa necesita un clic o la tecla F: el navegador no la permite al abrir con `?expo`. Subido al sitio publicado a pedido del autor.

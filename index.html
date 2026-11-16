@@ -19,9 +19,21 @@
       <p class="lede">Un recorrido filosófico por <i>El jardín de las delicias</i> de El Bosco. Cada sector del tríptico aloja una lectura de un eje de las Jornadas; el camino por el que llegás a cada uno va componiendo, a medida que navegás, un argumento propio.</p>
       <p class="epigrafe" id="epigrafe"></p>
     </div>
+    <div class="guia" id="guia" role="group" aria-label="Controles de la exposición" hidden>
+      <label for="guion">Recorrido</label>
+      <select id="guion"></select>
+      <button class="btn chico" id="gPrev" type="button" title="Tecla ← o RePág">← Anterior</button>
+      <span id="gPos" aria-live="polite"></span>
+      <button class="btn chico primary" id="gNext" type="button" title="Tecla →, AvPág o barra espaciadora">Siguiente →</button>
+      <button class="btn chico" id="gConcl" type="button" aria-pressed="false" title="Tecla C">Conclusión</button>
+      <button class="btn chico" id="gMenos" type="button" aria-label="Achicar la letra" title="Tecla −">A−</button>
+      <button class="btn chico" id="gMas" type="button" aria-label="Agrandar la letra" title="Tecla +">A+</button>
+      <button class="btn chico" id="gFull" type="button" title="Tecla F">Pantalla completa</button>
+    </div>
     <div class="controls">
       <button class="btn primary" id="doors" type="button" aria-pressed="false">Cerrar las puertas</button>
       <button class="btn" id="toMap" type="button">Mapa de ejes</button>
+      <button class="btn" id="expo" type="button" aria-pressed="false">Modo exposición</button>
     </div>
   </header>
 
@@ -110,7 +122,7 @@
   <div class="body">
     <article class="reading" id="reading" aria-live="polite"></article>
     <aside class="path" aria-label="Tu recorrido">
-      <div>
+      <div class="path-head">
         <div class="eyebrow">La navegación como argumento</div>
         <h2>Tu recorrido</h2>
       </div>
@@ -122,7 +134,7 @@
       <p class="partida" id="partida"></p>
       <svg class="mini" id="mini" role="img" aria-label="Tu recorrido dibujado sobre el tríptico" preserveAspectRatio="none"></svg>
       <ol class="steps" id="steps"></ol>
-      <div>
+      <div class="arg-wrap">
         <h3 style="margin-top:0">Argumento compuesto</h3>
         <div class="argument" id="argument"></div>
       </div>
@@ -168,6 +180,7 @@
       <p><b>Anclas</b>Cada sector guarda su posición en centímetros sobre las medidas nominales del panel, calibrada a ojo sobre la reproducción. Falta verificarlas contra la literatura.</p>
       <p><b>Argumento</b>El argumento, su cierre y la conclusión se componen por reglas, con frases redactadas de antemano con asistencia de IA; ningún modelo las genera mientras navegás. La conclusión es provisoria: cambia con cada paso.</p>
       <p><b>Estilo</b>La página toma su aspecto del propio cuadro y de los libros de su época: el marco negro y dorado de las puertas, la letra gótica de la inscripción, las rúbricas en rojo, las iniciales y las manecillas de los manuscritos y bestiarios.</p>
+      <p><b>Exposición</b>El modo exposición reordena la página para proyectarla: el cuadro, la lectura y el argumento en una sola pantalla, con letra grande. El recorrido guiado avanza paso a paso por un camino elegido de antemano, pero no lo cierra: en cualquier momento se puede tocar otro punto, y el argumento registra el desvío.</p>
       <p><b>Lecturas</b>Los textos son borradores redactados con asistencia de IA para discutir y reescribir. Las referencias señalan puntos de entrada, no una bibliografía cerrada.</p>
     </div>
   </section>

@@ -24,7 +24,7 @@ En humanidades digitales, la forma de navegar no es un soporte neutro: es parte 
 index.html          marcado de la página (sin contenido filosófico)
 css/estilos.css     tokens de diseño y estilos (tema claro y oscuro)
 js/datos.js         TODO el contenido: paneles, ejes, sectores, lecturas, reenvíos
-js/app.js           lógica: tríptico, puertas, lectura, mediación, recorrido, trazo, índice, mapa de ejes
+js/app.js           lógica: tríptico, puertas, lectura, mediación, recorrido, trazo, índice, mapa de ejes, modo exposición
 img/                reproducción del tríptico abierto (3840 px y versión liviana de 1920 px) y del exterior (1806 px; queda sin uso la anterior de 876 px)
 tools/build_single.py  genera dist/jardin-como-interfaz.html (un solo archivo, para republicar como artifact de claude.ai)
 docs/abstract.md    abstract enviado y versión anterior
@@ -51,6 +51,17 @@ Para generar una versión de un solo archivo: `python3 tools/build_single.py`.
 - Accesibilidad: los puntos del cuadro son `<button>` con `aria-label`, la lectura usa `aria-live` y se respeta `prefers-reduced-motion`. Mantenerlo así.
 - Estado: el recorrido es una lista de ids de sector y se guarda en `localStorage` con la clave `jardin-interfaz-v1`, siempre dentro de try/catch. El sector actual va en el hash (`#der-arbol`), así cada sector tiene un enlace propio. Un recorrido entero se comparte con `#r=id.id.id`; al abrirlo reemplaza al guardado.
 - Imagen: `app.js` carga la reproducción y, si llega, cubre el esquema SVG, que queda como alternativa sin red. Las puertas cerradas usan `img/exterior-1806.jpg`, con el esquema como alternativa. Sobre la pintura se usan los tokens fijos `--sobre-*`, que no cambian con el tema.
+
+## Modo exposición
+
+Se abre con el botón «Modo exposición» o con `?expo` en la dirección (por ejemplo `…/?expo#r=der-arbol.izq-eva`). Es la misma página reordenada con CSS (clase `expo` en `<html>`), no una vista aparte: el mecanismo del recorrido es el mismo.
+
+- **Una pantalla, sin desplazamiento** (desde 900 px de ancho): el cuadro arriba a la izquierda, la pregunta de partida, los pasos y el argumento debajo, y la lectura a la derecha. Se ocultan el índice, el mapa de ejes, las notas, los conceptos y las referencias.
+- **Letra grande**: `--ez` escala la lectura, el recorrido y la conclusión con `zoom`. `app.js` la calcula según el ancho de la ventana, y se ajusta con A− / A+.
+- **Recorrido guiado, opcional**: un guion (uno de `RECORRIDOS` o «repetir mi recorrido») que se recorre con «Siguiente». Elegirlo reemplaza el recorrido. No cierra el camino: se puede tocar otro punto y el argumento registra el desvío. El avance por el guion se deriva del recorrido (cuántos pasos del guion aparecen en él, en orden); no hay contador aparte. Al terminar, «Siguiente» abre la conclusión.
+- **Conclusión**: ocupa la pantalla en dos columnas. «Recomenzar» vuelve al cuadro en camino libre.
+- **Teclado**: → / AvPág / espacio, siguiente; ← / RePág, anterior (deshace el último paso); C, conclusión; Z, acercar; F, pantalla completa; + y −, letra; Esc, cerrar la conclusión o salir.
+- **Estado**: el guion y el tamaño de letra se guardan en `localStorage` con la clave `jardin-interfaz-expo`, dentro de try/catch. Salir del modo borra el guion.
 
 ## Modelo de datos
 
@@ -85,7 +96,7 @@ Las Jornadas son del 16 al 18 de noviembre. Prioridad para la exposición:
 2. **Reescritura de las lecturas** por el autor. La IA puede ayudar a editar, pero la voz es del autor.
 3. **Imagen.** Hecho para el tríptico abierto: la reproducción se aloja con el sitio (decisión del autor: por ahora sin IIIF). Falta: confirmar la fuente y el crédito de la imagen del exterior (1806 px, aportada por el autor; el archivo no declara origen) y borrar `img/exterior-876.jpg`, que ya no se usa; confirmar la fuente y el crédito exactos de la reproducción del interior (el nombre del archivo original indica Wikimedia Commons); y, si se quiere zoom profundo, teselas propias. Sigue abierta la exportación de las anclas como anotaciones W3C.
    - Revisar las frases de la conclusión, los campos `explora`, `breve`, `responde` y `reabre`, la glosa de la inscripción, los recorridos propuestos y sus respuestas a medida (todos borradores de la IA).
-4. **Modo exposición** para la ponencia: pantalla completa, letra grande, recorrido guiado opcional. Probarlo en el proyector.
+4. **Modo exposición**: armado el 16-11-2026 (ver abajo). Falta **probarlo en el proyector** y con un puntero de presentación; solo se verificó con capturas automáticas a 1920×1080, 1366×768 y 1024×768.
 5. **Publicación abierta**: hecho. El repositorio es público (github.com/ailcic/jardin-como-interfaz) y el sitio está en https://ailcic.github.io/jardin-como-interfaz/ (GitHub Pages desde `main`: cada push lo actualiza). Licencia provisoria, decidida por el autor el 16-11-2026: CC BY-NC-ND 4.0 para código y textos (`LICENSE`); las reproducciones en `img/` no quedan cubiertas. El autor puede cambiarla más adelante.
 6. **Página de método**: las decisiones de diseño como decisiones filosóficas, más la bitácora del proceso con IA.
 

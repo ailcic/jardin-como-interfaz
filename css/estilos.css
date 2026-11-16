@@ -281,3 +281,48 @@ td .ix{font-size:17px}
 @media (max-width:760px){.notes{grid-template-columns:minmax(0,1fr)}}
 @media (max-width:520px){.folio{padding:20px 26px;gap:34px}}
 @media (prefers-reduced-motion: reduce){.wing,.lienzo,.pintura,.trazo{transition:none}.hs::after{animation:none}}
+
+/* modo exposición: para proyectar. El cuadro, la lectura y el argumento entran
+   en una pantalla; la letra se agranda con --ez (la fija app.js según el ancho
+   de la ventana y el ajuste A− / A+). */
+.guia{display:flex;align-items:center;gap:8px;flex-wrap:wrap;font-family:var(--f-rubrica);font-size:15px;letter-spacing:.03em;color:var(--suelo-tenue)}
+.guia select{font:inherit;color:var(--suelo-tinta);background:var(--suelo);border:1px solid color-mix(in srgb, currentColor 40%, transparent);border-radius:1px;padding:5px 8px;max-width:24ch}
+.guia #gPos{min-width:9ch;text-align:center;color:var(--suelo-tinta);font-variant-numeric:lining-nums tabular-nums}
+html.expo{--ez:1}
+.expo .folio > section.block,.expo #toMap,.expo #stageHint,.expo header.top .eyebrow,.expo header.top .lede,.expo .epigrafe,
+.expo .reading .meta,.expo .reading .extra,.expo .path-head,.expo .counts,.expo .mini,.expo aside.path .row,.expo aside.path > .hint,.expo .propuestos{display:none}
+.expo header.top{display:flex;flex-wrap:wrap;align-items:center;gap:8px 20px}
+.expo header.top > div:first-child{display:flex;flex-wrap:wrap;align-items:baseline;gap:2px 18px;flex:1 1 auto;min-width:0}
+.expo h1{font-size:clamp(22px,2vw,30px);margin:0}
+.expo .hs{width:40px;height:40px}
+.expo .hs .n{font-size:15px}
+.expo .hs .tip{font-size:clamp(15px,1.3vw,22px)}
+.expo .trazo .caja{stroke-width:7}
+.expo .trazo .fuerte{stroke-width:3.2}
+.expo .trazo .debil{stroke-width:3;stroke-dasharray:3 10}
+.expo .trazo .arco{stroke-width:2.4}
+.expo .folio,.expo .body{display:contents}
+.expo article.reading,.expo.expo-concl .folio > .conclusion{zoom:var(--ez)}
+.expo aside.path{zoom:calc(var(--ez) * .85)}
+.expo .controls .btn{padding:5px 12px;font-size:14px}
+@media (max-width:1500px){.expo h1,.expo .guia label,.expo #credito{display:none}}
+.expo article.reading,.expo.expo-concl .folio > .conclusion{background:var(--bg);color:var(--ink);padding:20px 26px;box-shadow:0 0 0 1px rgb(0 0 0 / .5)}
+.expo.expo-concl .folio > .conclusion{display:flex}
+@media (min-width:900px){
+  html.expo,html.expo body{height:100%;overflow:hidden}
+  .expo .wrap{max-width:none;height:100vh;height:100dvh;padding:12px 22px 16px;gap:10px 26px;display:grid;grid-template-columns:minmax(0,1.32fr) minmax(0,1fr);grid-template-rows:auto auto minmax(0,1fr)}
+  .expo header.top{grid-column:1 / -1}
+  .expo .stage{grid-column:1;grid-row:2;width:100%;max-width:calc(50vh * 1.75);justify-self:center}
+  .expo article.reading{grid-column:2;grid-row:2 / 4;overflow:auto}
+  .expo aside.path{grid-column:1;grid-row:3;position:static;max-height:none;overflow:hidden;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.5fr);grid-template-rows:auto minmax(0,1fr);gap:8px 22px;padding:12px 16px}
+  .expo .partida{grid-column:1;grid-row:1}
+  .expo ol.steps{grid-column:1;grid-row:2;overflow:auto}
+  .expo .arg-wrap{grid-column:2;grid-row:1 / 3;display:flex;flex-direction:column;min-height:0}
+  .expo .argument{max-height:none;flex:1;min-height:0}
+  @media (max-height:850px){.expo .stage{max-width:calc(43vh * 1.75)}}
+  .expo.expo-concl .stage,.expo.expo-concl article.reading,.expo.expo-concl aside.path{display:none}
+  .expo.expo-concl .folio > .conclusion{grid-column:1 / -1;grid-row:2 / 4;overflow:auto;padding:3vh 5vw}
+  .expo.expo-concl #conclTexto{columns:2;column-gap:3.5em}
+  .expo.expo-concl .conclusion p{max-width:none}
+  .expo.expo-concl .conclusion p.forma{column-span:all}
+}
