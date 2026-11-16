@@ -1,0 +1,35 @@
+# Abstract
+
+Jornadas de Filosofía «Lo humano, lo no humano, las humanidades». FFyH–UNC, 16 al 18 de noviembre de 2026. Área: humanidades digitales. Límite: 500 palabras.
+
+## Versión final (497 palabras sin el título)
+
+**El jardín como interfaz. Un experimento de humanidades digitales sobre lo humano y lo no humano en el tríptico de El Bosco**
+
+La circular de estas Jornadas eligió como imagen el *Boommens* de El Bosco, ese hombre-árbol que reaparece en ruinas en el panel infernal de *El jardín de las delicias* (c. 1490-1510), y es ese gesto curatorial el que tomamos como punto de partida, puesto que, si el hombre-árbol condensa una indecisión entre lo humano, lo vegetal y lo artefactual, el tríptico puede leerse como una cartografía de las tensiones que el evento convoca. La ponencia presenta un experimento filosófico inscripto en las humanidades digitales: un sitio web interactivo y de código abierto que, al tomar la obra como interfaz de navegación, aloja en cada uno de sus sectores lecturas filosóficas de los ejes propuestos.
+
+El diseño obedece a la arquitectura material del tríptico. Las puertas cerradas, que muestran en grisalla un mundo anterior a la aparición del *anthropos*, abren el problema de lo no humano como condición previa y, con él, el de las ontologías que no parten de la escisión entre naturaleza y cultura. El panel izquierdo, donde se escenifica el Edén, aloja las lecturas históricas de la *humanitas* y la pregunta por la excepcionalidad, en la medida en que la creación funciona allí como escena fundacional de la diferencia antropológica. El panel central, poblado de cuerpos que se confunden con aves, frutos y criaturas híbridas, opera como un laboratorio de la continuidad en el que se ensayan posthumanismos y ontologías relacionales, mientras que el panel derecho, donde los instrumentos musicales devienen dispositivos de tortura, permite pensar una técnica que se vuelve contra quienes la empuñan y, desde allí, la expansión de la inteligencia artificial, los transhumanismos y el asedio contemporáneo a las humanidades y a la universidad. *El conflicto de las facultades* se reescribe, así, como un conflicto de paneles cuyos sectores, lejos de constituir compartimentos estancos, se reenvían mediante enlaces, de modo tal que cada recorrido produce un argumento diferente.
+
+La hipótesis que el experimento somete a prueba sostiene que, en las humanidades digitales, la forma de la navegación no constituye un soporte neutro sino parte del argumento. Una lectura hipertextual sobre imágenes de alta resolución, servidas mediante estándares abiertos (IIIF) que posibilitan el zoom profundo y la anotación situada, desplaza la linealidad del texto filosófico hacia una exploración procesual y emergente, más afín a un cuadro que se resiste a ser leído en un único sentido. Dado que el sitio se construye con asistencia de inteligencia artificial, el proceso de producción deviene objeto de reflexión, en cuanto obliga a preguntar qué autoría, qué lectura y qué saber humanístico emergen cuando el dispositivo que encarna el problema es también aquel que lo examina.
+
+En la exposición se recorrerá el prototipo, presentando sus decisiones de diseño como decisiones filosóficas y discutiendo sus límites, entre ellos el riesgo de reducir la obra a ilustración, la tensión entre apertura y curaduría, y la pregunta por si unas humanidades aumentadas amplían o empobrecen la experiencia del pensar. El sitio quedará en acceso abierto para la docencia y la investigación.
+
+## Compromisos que el abstract asume (y que el sitio debe cumplir)
+
+- Sitio interactivo y de código abierto.
+- Un sector por eje, siguiendo la arquitectura del tríptico: exterior, Edén, jardín, infierno.
+- Reenvíos entre sectores; cada recorrido produce un argumento distinto.
+- Imágenes de alta resolución con estándares abiertos (IIIF), zoom profundo y anotación situada.
+- Construcción asistida por IA, tematizada como problema de autoría.
+- Prototipo recorrible en la exposición.
+- Acceso abierto como recurso para docencia e investigación.
+
+## Versión anterior (469 palabras, oraciones más breves)
+
+La circular de estas Jornadas eligió como imagen el *Boommens* de El Bosco, el hombre-árbol que reaparece, ya en ruinas, en el panel infernal de *El jardín de las delicias* (c. 1490-1510). Tomamos ese gesto como punto de partida: si el hombre-árbol condensa la indecisión entre lo humano, lo vegetal y lo artefactual, el tríptico completo puede leerse como un mapa de las tensiones que convoca el evento. La ponencia presenta un experimento filosófico en el campo de las humanidades digitales: un sitio web interactivo y de código abierto que usa la obra como interfaz de navegación y aloja, en cada uno de sus sectores, lecturas filosóficas de los ejes propuestos.
+
+El diseño sigue la arquitectura material del tríptico. Las puertas cerradas, el mundo en grisalla antes del *anthropos*, abren el problema de lo no humano como condición previa y de las ontologías que no parten de la escisión naturaleza/cultura. El panel izquierdo, el Edén, aloja las lecturas históricas de la *humanitas* y la pregunta por la excepcionalidad: la creación como escena fundacional de la diferencia antropológica. El panel central, poblado de cuerpos humanos mezclados con aves, frutos y criaturas híbridas, funciona como laboratorio de la continuidad: posthumanismos, ontologías relacionales, crítica de las dicotomías occidentales. El panel derecho, donde los instrumentos musicales se vuelven dispositivos de tortura, permite pensar la técnica que se vuelve contra quienes la usan: la expansión de la inteligencia artificial, los transhumanismos, la destrucción de lo humano y el ataque actual a las humanidades y la universidad. *El conflicto de las facultades* se reescribe así como conflicto de paneles: los sectores no son compartimentos sino zonas que se reenvían mediante enlaces, de modo que cada recorrido produce un argumento distinto.
+
+La hipótesis que el experimento pone a prueba es que, en las humanidades digitales, la forma de la navegación no es un soporte neutro sino parte del argumento. Una lectura hipertextual sobre imágenes de alta resolución servidas con estándares abiertos (IIIF), con zoom profundo y anotaciones situadas, desplaza la linealidad del texto filosófico hacia una exploración no lineal, de procesos y emergencias, más afín al propio cuadro, que no se deja leer en un solo sentido. A la vez, el sitio se construye con asistencia de inteligencia artificial, lo que vuelve objeto de reflexión el propio proceso de producción: ¿qué autoría, qué lectura y qué saber humanístico emergen cuando el dispositivo que encarna el problema es también el que lo examina?
+
+En la exposición se recorrerá el prototipo, se presentarán sus decisiones de diseño como decisiones filosóficas y se discutirán sus límites: el riesgo de reducir la obra a ilustración, la tensión entre apertura y curaduría, y la pregunta por si unas humanidades aumentadas amplían o empobrecen la experiencia del pensar. El sitio quedará en acceso abierto como recurso para la docencia y la investigación.

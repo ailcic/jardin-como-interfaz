@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>El jardín como interfaz</title>
+<meta name="description" content="Experimento filosófico de humanidades digitales: El jardín de las delicias de El Bosco como interfaz de lectura de los ejes de las Jornadas «Lo humano, lo no humano, las humanidades».">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Texturina:ital,opsz,wght@0,12..72,400..700;1,12..72,400..700&family=Alegreya:ital,wght@0,400..700;1,400..700&family=Alegreya+SC:wght@400;500;700&display=swap">
+<link rel="stylesheet" href="css/estilos.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <div>
+      <div class="eyebrow">Prototipo 0.2 · Jornadas de Filosofía · FFyH–UNC · 16–18 nov 2026</div>
+      <h1>El jardín como interfaz</h1>
+      <p class="lede">Un recorrido filosófico por <i>El jardín de las delicias</i> de El Bosco. Cada sector del tríptico aloja una lectura de un eje de las Jornadas; el camino por el que llegás a cada uno va componiendo, a medida que navegás, un argumento propio.</p>
+      <p class="epigrafe" id="epigrafe"></p>
+    </div>
+    <div class="controls">
+      <button class="btn primary" id="doors" type="button" aria-pressed="false">Cerrar las puertas</button>
+      <button class="btn" id="toMap" type="button">Mapa de ejes</button>
+    </div>
+  </header>
+
+  <section class="stage" aria-label="Tríptico navegable">
+    <div class="frame" id="frame">
+     <div class="lienzo" id="lienzo">
+      <div class="triptych" id="triptych">
+        <div class="wing left">
+          <div class="face front">
+            <svg viewBox="0 0 96.5 205.5" preserveAspectRatio="none" aria-hidden="true">
+              <rect width="96.5" height="72" fill="var(--eden-sky)"/>
+              <rect y="70" width="96.5" height="135.5" fill="var(--eden-ground)"/>
+              <path d="M0 72 Q18 58 36 69 T72 64 T96.5 66 L96.5 78 L0 78Z" fill="var(--garden-ground)" opacity=".8"/>
+              <ellipse cx="48" cy="122" rx="34" ry="6" fill="var(--water)"/>
+              <path d="M44.5 124 L46.5 66 Q48 46 49.5 66 L51.5 124 Z" fill="var(--garden-pink)"/>
+              <ellipse cx="48" cy="124" rx="11" ry="2.6" fill="var(--garden-pink)"/>
+              <circle cx="48" cy="92" r="3.2" fill="var(--hell)" opacity=".75"/>
+              <path d="M18 168 L19 118 M19 118 q-8 -4 -10 2 M19 118 q8 -6 11 0 M19 124 q-7 -2 -9 4" stroke="var(--gris-line)" stroke-width=".7" fill="none" opacity=".7"/>
+              <ellipse cx="48" cy="191" rx="42" ry="9" fill="var(--water)" opacity=".9"/>
+              <g fill="var(--gris-line)" opacity=".55"><ellipse cx="40" cy="166" rx="2" ry="5"/><ellipse cx="49" cy="164" rx="2" ry="6"/><ellipse cx="57" cy="168" rx="3.5" ry="2.4"/></g>
+            </svg>
+            <div class="pintura" data-panel="izq"></div>
+          </div>
+          <div class="face back l"><div class="halfglobe" data-globe="l"></div><div class="pintura ext" data-panel="extl"></div></div>
+        </div>
+
+        <div class="panel center">
+          <svg viewBox="0 0 192 205.5" preserveAspectRatio="none" aria-hidden="true">
+            <rect width="192" height="40" fill="var(--garden-sky)"/>
+            <g fill="var(--garden-pink)" opacity=".8">
+              <path d="M16 46 L20 20 L24 46Z"/><path d="M54 46 L58 22 L62 46Z"/><path d="M90 46 L96 12 L102 46Z"/><path d="M130 46 L134 22 L138 46Z"/><path d="M168 46 L172 20 L176 46Z"/>
+            </g>
+            <circle cx="96" cy="14" r="4" fill="none" stroke="var(--water)" stroke-width=".8"/>
+            <rect y="40" width="192" height="12" fill="var(--water)"/>
+            <rect y="51" width="192" height="154.5" fill="var(--garden-ground)"/>
+            <ellipse cx="96" cy="80" rx="22" ry="7" fill="var(--water)"/>
+            <ellipse cx="96" cy="80" rx="48" ry="16" fill="none" stroke="var(--gris-line)" stroke-width=".7" stroke-dasharray="2.2 2.2" opacity=".75"/>
+            <g fill="none" stroke="var(--water)" stroke-width=".9"><circle cx="40" cy="120" r="8"/><circle cx="150" cy="110" r="5"/><circle cx="64" cy="98" r="4"/></g>
+            <path d="M36 116 q4 -3 8 0" stroke="var(--surface)" stroke-width=".6" fill="none" opacity=".8"/>
+            <g fill="var(--accent)" opacity=".5"><circle cx="70" cy="160" r="6"/><circle cx="112" cy="171" r="5"/><circle cx="142" cy="150" r="4"/><circle cx="92" cy="182" r="3.5"/></g>
+            <path d="M58 150 q8 -9 16 0 q-8 3 -16 0Z" fill="var(--gris-line)" opacity=".45"/>
+            <path d="M120 140 q9 -10 18 -2 q-9 4 -18 2Z" fill="var(--gris-line)" opacity=".45"/>
+            <path d="M168 205.5 Q168 182 182 180 Q192 180 192 192 L192 205.5Z" fill="var(--hell)" opacity=".55"/>
+          </svg>
+          <div class="pintura" data-panel="cen"></div>
+        </div>
+
+        <div class="wing right">
+          <div class="face front">
+            <svg viewBox="0 0 96.5 205.5" preserveAspectRatio="none" aria-hidden="true">
+              <defs><linearGradient id="fireg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="var(--fire)"/><stop offset=".7" stop-color="var(--hell)"/></linearGradient></defs>
+              <rect width="96.5" height="205.5" fill="var(--hell)"/>
+              <rect width="96.5" height="58" fill="url(#fireg)"/>
+              <path d="M0 40 L6 40 L6 28 L10 28 L10 36 L18 36 L18 22 L22 22 L22 36 L34 36 L34 30 L40 26 L46 30 L46 40 L58 40 L58 24 L62 18 L66 24 L66 40 L78 40 L78 30 L86 30 L86 40 L96.5 40 L96.5 46 L0 46Z" fill="var(--hell-deep)"/>
+              <ellipse cx="48" cy="66" rx="13" ry="3" fill="var(--garden-pink)" opacity=".85"/>
+              <path d="M34 78 Q48 66 62 78 Q60 90 48 90 Q36 90 34 78Z" fill="var(--gris)"/>
+              <path d="M58 76 L62 82 L56 86" stroke="var(--hell)" stroke-width=".8" fill="none"/>
+              <path d="M42 89 L37 136 M54 89 L59 136" stroke="var(--gris)" stroke-width="2.4" stroke-linecap="round"/>
+              <ellipse cx="36" cy="138" rx="7" ry="2" fill="var(--gris-dark)"/><ellipse cx="60" cy="138" rx="7" ry="2" fill="var(--gris-dark)"/>
+              <path d="M20 136 L28 104 L36 136 Z" stroke="var(--gris)" stroke-width=".9" fill="none"/>
+              <path d="M24 136 L28 118 M28 136 L29 112 M32 136 L30 116" stroke="var(--gris)" stroke-width=".4"/>
+              <ellipse cx="14" cy="112" rx="5" ry="7" fill="none" stroke="var(--gris)" stroke-width=".8"/>
+              <path d="M14 105 L18 92" stroke="var(--gris)" stroke-width=".8"/>
+              <path d="M70 182 q8 -8 16 0 q-2 6 -8 6 q-6 0 -8 -6Z" fill="var(--garden-pink)" opacity=".6"/>
+              <rect x="64" y="190" width="10" height="7" fill="var(--gris)" opacity=".7"/>
+            </svg>
+            <div class="pintura" data-panel="der"></div>
+          </div>
+          <div class="face back r"><div class="halfglobe" data-globe="r"></div><div class="pintura ext" data-panel="extr"></div></div>
+        </div>
+      </div>
+      <svg class="trazo" id="trazo" preserveAspectRatio="none" aria-hidden="true"></svg>
+      <div class="hotspots" id="hotspots"></div>
+     </div>
+    </div>
+    <div class="panel-names" id="panelNames" aria-hidden="true">
+      <span>Paraíso</span><span>El jardín</span><span>Infierno</span>
+    </div>
+    <div class="stage-legend">
+      <span id="stageHint">Tocá un punto para abrir su lectura. La línea continua es un reenvío; la punteada, un camino más débil. Los anillos rosas marcan adónde reenvía el sector actual.</span>
+      <span class="stage-tools"><button class="btn chico" id="zoom" type="button" aria-pressed="false">Acercar al detalle</button><span id="credito">Esquema · medidas aprox. 205,5 × 384,9 cm (Museo del Prado)</span></span>
+    </div>
+  </section>
+
+  <main class="folio">
+  <div class="body">
+    <article class="reading" id="reading" aria-live="polite"></article>
+    <aside class="path" aria-label="Tu recorrido">
+      <div>
+        <div class="eyebrow">La navegación como argumento</div>
+        <h2>Tu recorrido</h2>
+      </div>
+      <div class="counts">
+        <div><b id="cSect">0</b>de 12 sectores</div>
+        <div><b id="cAxes">0</b>de 10 ejes</div>
+        <div><b id="cLinks">0</b>reenvíos</div>
+      </div>
+      <p class="partida" id="partida"></p>
+      <svg class="mini" id="mini" role="img" aria-label="Tu recorrido dibujado sobre el tríptico" preserveAspectRatio="none"></svg>
+      <ol class="steps" id="steps"></ol>
+      <div>
+        <h3 style="margin-top:0">Argumento compuesto</h3>
+        <div class="argument" id="argument"></div>
+      </div>
+      <div class="row">
+        <button class="btn chico" id="copyArg" type="button">Copiar el argumento</button>
+        <button class="btn chico" id="copyLink" type="button">Copiar el enlace</button>
+        <button class="btn chico" id="undo" type="button">Deshacer el último paso</button>
+        <button class="btn chico" id="resetPath" type="button">Empezar de nuevo</button>
+        <span class="status" id="status" role="status"></span>
+      </div>
+      <p class="hint"><b>Mediación</b> es el camino por el que se llegó. A veces tiene una razón declarada: un reenvío. Otras veces la sostienen causas más débiles y varias: un reenvío que había quedado abierto, un eje o un autor compartidos, la vecindad en el cuadro. Ningún paso llega sin camino, y dos recorridos distintos producen dos argumentos distintos.</p>
+      <details class="propuestos" id="propuestos"></details>
+    </aside>
+  </div>
+
+  <section class="block conclusion" id="conclusion" aria-label="Conclusión del recorrido">
+    <div class="eyebrow">La pregunta del inicio, respondida desde el final</div>
+    <h2>Conclusión del recorrido</h2>
+    <div id="conclTexto"></div>
+    <div class="row"><button class="btn primary" id="reabrir" type="button" hidden></button></div>
+  </section>
+
+  <section class="block" aria-label="Índice de sectores">
+    <h2>Sectores</h2>
+    <div class="index" id="index"></div>
+  </section>
+
+  <section class="block" id="mapa" aria-label="Mapa de ejes">
+    <h2>Mapa de ejes</h2>
+    <p class="lede">Cómo se distribuyen los ejes de la convocatoria sobre la arquitectura del tríptico. El eje cero no figura en la lista de la circular, pero ordena su texto de presentación.</p>
+    <div class="tablewrap">
+      <table>
+        <thead><tr><th>Código</th><th>Eje de la convocatoria</th><th>Sector</th><th>Panel</th></tr></thead>
+        <tbody id="axisTable"></tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="block" aria-label="Notas del prototipo">
+    <h2>Notas del prototipo</h2>
+    <div class="notes">
+      <p><b>Imagen</b>El tríptico abierto es una reproducción en dominio público, alojada con el sitio. Si la imagen no carga, queda el esquema: un mapa de zonas. El exterior en grisalla es otra reproducción, cuya fuente falta confirmar.</p>
+      <p><b>Anclas</b>Cada sector guarda su posición en centímetros sobre las medidas nominales del panel, calibrada a ojo sobre la reproducción. Falta verificarlas contra la literatura.</p>
+      <p><b>Argumento</b>El argumento, su cierre y la conclusión se componen por reglas, con frases redactadas de antemano con asistencia de IA; ningún modelo las genera mientras navegás. La conclusión es provisoria: cambia con cada paso.</p>
+      <p><b>Estilo</b>La página toma su aspecto del propio cuadro y de los libros de su época: el marco negro y dorado de las puertas, la letra gótica de la inscripción, las rúbricas en rojo, las iniciales y las manecillas de los manuscritos y bestiarios.</p>
+      <p><b>Lecturas</b>Los textos son borradores redactados con asistencia de IA para discutir y reescribir. Las referencias señalan puntos de entrada, no una bibliografía cerrada.</p>
+    </div>
+  </section>
+  </main>
+</div>
+
+<script src="js/datos.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
