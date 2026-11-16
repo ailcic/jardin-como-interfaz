@@ -25,4 +25,8 @@ No hay dependencias ni paso de compilación. Todo el contenido está en `js/dato
 
 Prototipo 0.2. El tríptico abierto usa una reproducción en dominio público (`img/`); el exterior sigue siendo un esquema. Las lecturas son borradores.
 
-Licencia: pendiente.
+Sitio publicado: https://ailcic.github.io/jardin-como-interfaz/
+
+## Licencia
+
+Por ahora, el código y los textos se publican bajo [CC BY-NC-ND 4.0](https://creativecommons.org/licenses/by-nc-nd/4.0/deed.es) (atribución, sin uso comercial, sin obras derivadas); el texto legal está en `LICENSE`. Las reproducciones del tríptico en `img/` no son del autor y no quedan cubiertas por esta licencia.

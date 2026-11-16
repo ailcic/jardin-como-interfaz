@@ -86,7 +86,7 @@ Las Jornadas son del 16 al 18 de noviembre. Prioridad para la exposición:
 3. **Imagen.** Hecho para el tríptico abierto: la reproducción se aloja con el sitio (decisión del autor: por ahora sin IIIF). Falta: confirmar la fuente y el crédito de la imagen del exterior (1806 px, aportada por el autor; el archivo no declara origen) y borrar `img/exterior-876.jpg`, que ya no se usa; confirmar la fuente y el crédito exactos de la reproducción del interior (el nombre del archivo original indica Wikimedia Commons); y, si se quiere zoom profundo, teselas propias. Sigue abierta la exportación de las anclas como anotaciones W3C.
    - Revisar las frases de la conclusión, los campos `explora`, `breve`, `responde` y `reabre`, la glosa de la inscripción, los recorridos propuestos y sus respuestas a medida (todos borradores de la IA).
 4. **Modo exposición** para la ponencia: pantalla completa, letra grande, recorrido guiado opcional. Probarlo en el proyector.
-5. **Publicación abierta**: repositorio público y GitHub Pages o similar. La licencia está pendiente y la decide el autor; por ejemplo, una licencia libre para el código y CC BY 4.0 para los textos.
+5. **Publicación abierta**: hecho. El repositorio es público (github.com/ailcic/jardin-como-interfaz) y el sitio está en https://ailcic.github.io/jardin-como-interfaz/ (GitHub Pages desde `main`: cada push lo actualiza). Licencia provisoria, decidida por el autor el 16-11-2026: CC BY-NC-ND 4.0 para código y textos (`LICENSE`); las reproducciones en `img/` no quedan cubiertas. El autor puede cambiarla más adelante.
 6. **Página de método**: las decisiones de diseño como decisiones filosóficas, más la bitácora del proceso con IA.
 
 ## Antecedentes

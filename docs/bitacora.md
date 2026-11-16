@@ -67,3 +67,11 @@ Formato: fecha, qué se hizo, quién lo propuso (autor o IA), qué se decidió y
   - agrega una diapositiva, «El recorrido responde y vuelve a preguntar», sobre el ciclo de pregunta y respuesta y la composición por reglas;
   - actualiza los próximos pasos y las notas del orador de esas diapositivas.
 - **Abierto:** los textos nuevos de las diapositivas y de las notas son borradores de la IA. La última diapositiva sigue con «[URL del sitio]» sin completar. La presentación se sube al repositorio a pedido del autor.
+
+## 2026-11-16 — Publicación abierta (Claude Code)
+
+- **Autor:** decide hacer público el repositorio y activar GitHub Pages.
+- **IA:** cambia la visibilidad a pública y publica desde la rama `main`. El sitio queda en https://ailcic.github.io/jardin-como-interfaz/.
+- **Autor:** fija la licencia, por ahora, en CC BY-NC-ND.
+- **IA:** agrega `LICENSE` con el texto legal de la versión 4.0 (la versión la eligió la IA, por ser la vigente), lo anota en `README.md` y `CLAUDE.md`, aclara que las reproducciones de `img/` no quedan cubiertas, y pone la dirección del sitio en la última diapositiva y en los próximos pasos de la presentación.
+- **Abierto:** falta el crédito de la imagen del exterior. La licencia elegida no permite obras derivadas, lo que entra en tensión con la idea de que estudiantes sumen sectores al sitio; queda para discutir.
